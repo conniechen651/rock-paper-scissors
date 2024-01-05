@@ -1,3 +1,4 @@
+// random generation of computer choice
 function getComputerChoice(){
     let num = Math.floor(Math.random() * 3);
     if (num==0){
@@ -9,37 +10,61 @@ function getComputerChoice(){
     }
 }
 
+// one round of a game
 function playRound(playerSelection, computerSelection){
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
+    playerSelection = playerSelection.toString().toLowerCase();
+    computerSelection = computerSelection.toString().toLowerCase();
     if (computerSelection == "rock"){
         if (playerSelection == "rock"){
-            return "Tie!";
+            return 0;
         } else if (playerSelection == "paper"){
-            return "You win! Paper beats rock!";
+            return 1;
         } else {
-            return "You lose! Rock beats scissors.";
+            return -1;
         }
     } else if (computerSelection == "paper"){
         if(playerSelection == "rock"){
-            return "You lose! Paper beats rock.";
+            return -1;
         } else if (playerSelection == "paper") {
-            return "Tie!";
+            return 0;
         } else {
-            return "You win! Scissors beats paper!";
+            return 1;
         }
     } else {
         if (playerSelection == "rock") {
-            return "You win! Rock beats scissors!";
+            return 1;
         } else if (playerSelection == "paper") {
-            return "You lose! Scissors beats paper";
+            return -1;
         } else {
-            return "Tie!";
+            return 0;
         }
     }
 }
 
-const playerSelection = "Rock";
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+
+// 5 total rounds in a game (ties don't count as a round)
+function game(){
+    let computerScore = 0;
+    let playerScore = 0;
+    let numRounds = 5;
+    for (let i = 0; i < numRounds; i++){
+        let computerChoice = getComputerChoice();
+        let round = playRound(prompt("Rock, paper, or scissors?"), computerChoice);
+        console.log("Computer chooses: "+computerChoice);
+        if (round < 0) {
+            computerScore++;
+        } else if (round > 0) {
+            playerScore++;
+        } else {
+            numRounds++;
+        }
+        console.log("Your score: "+playerScore+"      Computer score: "+computerScore);
+    }
+    if (playerScore > computerScore) {
+        console.log("You win!");
+    } else {
+        console.log("You lose!");
+    }
+}
+
+console.log(game());
