@@ -47,7 +47,8 @@ function game(){
     let computerScore = 0;
     let playerScore = 0;
     let numRounds = 5;
-    for (let i = 0; i < numRounds; i++){
+    let isOver = false;
+    while(!isOver){
         let computerChoice = getComputerChoice();
         let round = playRound(prompt("Rock, paper, or scissors?"), computerChoice);
         console.log("Computer chooses: "+computerChoice);
@@ -59,6 +60,9 @@ function game(){
             numRounds++;
         }
         console.log("Your score: "+playerScore+"      Computer score: "+computerScore);
+        if (playerScore == 5 || computerScore == 5){
+            isOver = true;
+        }
     }
     if (playerScore > computerScore) {
         console.log("You win!");
