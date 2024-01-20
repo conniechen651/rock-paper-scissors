@@ -9,13 +9,14 @@ body {
 h1 {
     font-size: 50px;
     font-weight: 300;
+    padding-top: 50px
 }
 
 .buttons {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 200px;
+    height: 100px;
     width: 800px;
 }
 
@@ -31,4 +32,27 @@ button {
 
 button:hover {
     background-color: rgb(228, 228, 228);
+}
+
+.scores {
+    display: flex;
+    width: 500px;
+    height: 50px;
+    justify-content: space-evenly;
+}
+
+.choice {
+    height: 100px;
+}
+
+.win {
+    color: green;
+}
+
+.lose {
+    color: red;
+}
+
+.replay {
+    width: 100px
 }
