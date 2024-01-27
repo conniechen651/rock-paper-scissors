@@ -49,12 +49,34 @@ function playRound(playerSelection, computerSelection){
 }
 
 const btn = document.querySelector(".buttons");
+const buttonDiv = document.querySelector(".buttons");
 const playerScoreText = document.querySelector("#player-score");
 const computerScoreText = document.querySelector("#computer-score");
 const playerChoiceText = document.querySelector("#player-choice");
 const computerChoiceText = document.querySelector("#computer-choice");
 
-btn.addEventListener("click", (event) => {
+function createButtons() {
+    const rockBtn = document.createElement("button");
+    rockBtn.setAttribute("id","rock");
+    rockBtn.textContent = "Rock";
+    buttonDiv.appendChild(rockBtn);
+
+    const paperBtn = document.createElement("button");
+    paperBtn.setAttribute("id","paper");
+    paperBtn.textContent = "Paper";
+    buttonDiv.appendChild(paperBtn);
+
+    const scissorsBtn = document.createElement("button");
+    scissorsBtn.setAttribute("id","scissors");
+    scissorsBtn.textContent = "Scissors";
+    buttonDiv.appendChild(scissorsBtn);
+}
+
+createButtons();
+
+btn.addEventListener("click", play);
+
+function play(event) {
     let playerChoice = event.target.id;
     let computerChoice = getComputerChoice();
     playRound(playerChoice, computerChoice);
@@ -66,8 +88,10 @@ btn.addEventListener("click", (event) => {
     computerScoreText.textContent = `Computer score: ${computerScore}`;
 
     gameOver();
-    
-});
+
+    const replayBtn = document.querySelector("#replay");
+    replayBtn.addEventListener("click", replay);
+};
 
 const results = document.querySelector("#results");
 
@@ -85,21 +109,33 @@ function gameOver(){
             lose.classList.add("lose");
             results.appendChild(lose);
         }
+    const rockButton = document.querySelector("#rock");
+    const paperButton = document.querySelector("#paper");
+    const scissorsButton = document.querySelector("#scissors");
+
+    rockButton.remove();
+    paperButton.remove();
+    scissorsButton.remove();
+    
     const replayBtn = document.createElement("button");
-    replayBtn.classList.add("replay");
+    replayBtn.setAttribute("id","replay");
     replayBtn.textContent = "🔁 Replay";
     results.appendChild(replayBtn);
-
-    btn.removeEventListener();
     }
     
 }
 
-function replay() {
+// reset the game
+function replay(){
     computerScore = 0;
     playerScore = 0;
-    
-    
-}
 
-replayBtn.addEventListener
+    document.getElementById("results").innerHTML = "";
+    
+    playerChoiceText.textContent = "";
+    computerChoiceText.textContent = "";
+    playerScoreText.textContent = `Your score: ${playerScore}`;
+    computerScoreText.textContent = `Computer score: ${computerScore}`;
+
+    createButtons();
+}
