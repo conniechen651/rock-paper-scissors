@@ -49,7 +49,6 @@ function playRound(playerSelection, computerSelection){
 }
 
 const btn = document.querySelector(".buttons");
-const buttonDiv = document.querySelector(".buttons");
 const playerScoreText = document.querySelector("#player-score");
 const computerScoreText = document.querySelector("#computer-score");
 const playerChoiceText = document.querySelector("#player-choice");
@@ -59,17 +58,17 @@ function createButtons() {
     const rockBtn = document.createElement("button");
     rockBtn.setAttribute("id","rock");
     rockBtn.textContent = "Rock";
-    buttonDiv.appendChild(rockBtn);
+    btn.appendChild(rockBtn);
 
     const paperBtn = document.createElement("button");
     paperBtn.setAttribute("id","paper");
     paperBtn.textContent = "Paper";
-    buttonDiv.appendChild(paperBtn);
+    btn.appendChild(paperBtn);
 
     const scissorsBtn = document.createElement("button");
     scissorsBtn.setAttribute("id","scissors");
     scissorsBtn.textContent = "Scissors";
-    buttonDiv.appendChild(scissorsBtn);
+    btn.appendChild(scissorsBtn);
 }
 
 createButtons();
